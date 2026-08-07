@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${isEdit} ? 'Edit Room — StayEasy' : 'Add Room — StayEasy'">Room Form</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+<div class="container">
+    <div class="form-card" style="max-width:600px">
+        <h2 th:text="${isEdit} ? 'Edit Room' : 'Add a New Room'">Room Form</h2>
+
+        <form th:action="${isEdit} ? @{/rooms/{id}/edit(id=${roomId})} : @{/rooms/new}"
+              th:object="${roomDto}" method="post">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" id="title" th:field="*{title}">
+                <div class="error-text" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div>
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea id="description" rows="4" th:field="*{description}"></textarea>
+                <div class="error-text" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></div>
+            </div>
+            <div class="form-group">
+                <label for="location">Location</label>
+                <input type="text" id="location" th:field="*{location}">
+                <div class="error-text" th:if="${#fields.hasErrors('location')}" th:errors="*{location}"></div>
+            </div>
+            <div class="form-group">
+                <label for="pricePerNight">Price per night ($)</label>
+                <input type="number" step="0.01" id="pricePerNight" th:field="*{pricePerNight}">
+                <div class="error-text" th:if="${#fields.hasErrors('pricePerNight')}" th:errors="*{pricePerNight}"></div>
+            </div>
+            <div class="form-group">
+                <label for="maxGuests">Max Guests</label>
+                <input type="number" id="maxGuests" th:field="*{maxGuests}">
+                <div class="error-text" th:if="${#fields.hasErrors('maxGuests')}" th:errors="*{maxGuests}"></div>
+            </div>
+            <div class="form-group">
+                <label for="imageUrl">Image URL (optional)</label>
+                <input type="text" id="imageUrl" th:field="*{imageUrl}">
+            </div>
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" th:field="*{available}" style="width:auto;display:inline">
+                    Available for booking
+                </label>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%"
+                    th:text="${isEdit} ? 'Save Changes' : 'Create Room'">Save</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

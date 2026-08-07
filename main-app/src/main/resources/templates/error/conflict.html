@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Booking Conflict — StayEasy</title>
+<link rel="stylesheet" th:href="@{/css/style.css}"></head>
+<body>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+<div class="container"><div class="empty-state">
+    <h1>Booking Conflict</h1>
+    <p th:text="${message}">This room is not available for the selected dates.</p>
+    <a class="btn btn-primary" th:href="@{/rooms}">Browse Other Rooms</a>
+</div></div>
+</body>
+</html>

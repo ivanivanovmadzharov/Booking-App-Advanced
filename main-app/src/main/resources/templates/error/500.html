@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Error — StayEasy</title>
+<link rel="stylesheet" th:href="@{/css/style.css}"></head>
+<body>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+<div class="container"><div class="empty-state">
+    <h1>Oops!</h1>
+    <p th:text="${message} ?: 'Something went wrong. Please try again later.'">Error.</p>
+    <a class="btn btn-primary" th:href="@{/}">Go Home</a>
+</div></div>
+</body>
+</html>

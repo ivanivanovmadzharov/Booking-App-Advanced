@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Browse Rooms — StayEasy</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+<div class="container">
+    <div class="page-header">
+        <h1>Browse Rooms</h1>
+    </div>
+
+    <div class="empty-state" th:if="${rooms.isEmpty()}">
+        <p>No rooms available right now. Check back later!</p>
+    </div>
+
+    <div class="grid" th:unless="${rooms.isEmpty()}">
+        <div class="card" th:each="room : ${rooms}">
+            <img th:if="${room.imageUrl != null and !room.imageUrl.isEmpty()}"
+                 th:src="${room.imageUrl}" alt="room image">
+            <img th:unless="${room.imageUrl != null and !room.imageUrl.isEmpty()}"
+                 src="https://placehold.co/400x240?text=No+Image" alt="no image">
+            <div class="card-body">
+                <h3 th:text="${room.title}">Room Title</h3>
+                <div class="location" th:text="${room.location}">Location</div>
+                <div class="price">$<span th:text="${room.pricePerNight}">100</span> / night</div>
+                <a class="btn btn-primary" style="margin-top:auto"
+                   th:href="@{/rooms/{id}(id=${room.id})}">View Details</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

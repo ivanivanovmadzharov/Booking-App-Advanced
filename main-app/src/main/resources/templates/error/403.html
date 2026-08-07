@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Access Denied — StayEasy</title>
+<link rel="stylesheet" th:href="@{/css/style.css}"></head>
+<body>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+<div class="container"><div class="empty-state">
+    <h1>403</h1>
+    <p th:text="${message} ?: 'You do not have permission to access this page.'">Forbidden.</p>
+    <a class="btn btn-primary" th:href="@{/}">Go Home</a>
+</div></div>
+</body>
+</html>

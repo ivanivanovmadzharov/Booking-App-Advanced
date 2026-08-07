@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>StayEasy — Find your perfect stay</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+<div class="hero">
+    <h1>Find your perfect stay</h1>
+    <p>Browse rooms from hosts around the world and book your next trip in minutes.</p>
+    <a class="btn btn-primary" th:href="@{/rooms}">Browse Rooms</a>
+</div>
+</body>
+</html>
